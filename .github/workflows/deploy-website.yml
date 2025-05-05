@@ -1,0 +1,44 @@
+name: 'Deploy website'
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/demo/**'
+  workflow_run:
+    workflows: ["Publish package"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: "Web demo release 🎉"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: 'Installing node...'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm install -g pnpm@latest
+      - name: 'Installing dependencies...'
+        run: pnpm install --frozen-lockfile --silent
+
+      - name: 'Building design package...'
+        working-directory: packages/design
+        run: pnpm build
+
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}

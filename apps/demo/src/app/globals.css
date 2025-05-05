@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import "@team-menyala/clover/style.css";
+@source "@team-menyala/clover";
+
+/* Fallback when postcss failed to recognize original source */
+@source "../../node_modules/@team-menyala/clover";
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-gray-darker font-sans font-light;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    @apply text-foreground;
+  }
+  code {
+    @apply bg-gray-200/70 px-1.5 py-0.5 rounded-xs font-sans font-normal;
+  }
+}
+
+@layer utilities {
+  .transition-all, .transition-colors, .transition-opacity, 
+  .transition-shadow, .transition-transform {
+    @apply duration-200;
+  }
+}
+
+@keyframes spin_clover {
+  20% {
+    transform: rotate(0deg);
+  }
+  50%, 100% {
+    transform: rotate(180deg);
+  }
+}
+.clover-spin {
+  animation: spin_clover 8s cubic-bezier(.77,0,.18,1) infinite;
+}
