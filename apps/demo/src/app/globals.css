@@ -5,36 +5,44 @@
 /* Fallback when postcss failed to recognize original source */
 @source "../../node_modules/@team-menyala/clover";
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-gray-darker font-sans font-light;
-  }
-  h1,h2,h3,h4,h5,h6 {
-    @apply text-foreground;
-  }
-  code {
-    @apply bg-gray-200/70 px-1.5 py-0.5 rounded-xs font-sans font-normal;
-  }
-}
-
-@layer utilities {
-  .transition-all, .transition-colors, .transition-opacity, 
-  .transition-shadow, .transition-transform {
-    @apply duration-200;
-  }
-}
-
 @keyframes spin_clover {
   20% {
     transform: rotate(0deg);
   }
-  50%, 100% {
+
+  50%,
+  100% {
     transform: rotate(180deg);
   }
 }
+
+@keyframes loading_clover {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
 .clover-spin {
-  animation: spin_clover 8s cubic-bezier(.77,0,.18,1) infinite;
+  animation: spin_clover 8s cubic-bezier(.77, 0, .18, 1) infinite;
+}
+
+.loading-spin {
+  animation: loading_clover 2s cubic-bezier(.65, .05, .36, 1) infinite;
+}
+*:hover > .hover-only-loading-spin {
+  animation: loading_clover 1s cubic-bezier(.17,.84,.44,1) 1;
+}
+
+#nprogress .bar {
+  background-color: var(--color-primary) !important;
+  height: 3px !important;
+  pointer-events: none;
+}
+
+#nprogress .spinner {
+  display: none !important;
 }

@@ -19,6 +19,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <div id="progress" className="h-[3px]"></div>
         {children}
       </body>
     </html>
