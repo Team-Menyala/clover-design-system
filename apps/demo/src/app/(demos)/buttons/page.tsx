@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import { Button, type ButtonType } from "@team-menyala/clover/src/button";
 import { ReactNode } from "react";
-import { start } from "@/components/loading";
 
 export const metadata: Metadata = {
     title: "Buttons"
@@ -18,15 +17,15 @@ const buttons: ButtonGroup[] = [
         variants: [
             // normal
             [
-                <Button size="lg">Primary</Button>,
-                <Button>Primary</Button>,
-                <Button size="sm">Primary</Button>,
+                <Button size="lg" key="primary-normal-lg">Primary</Button>,
+                <Button key="primary-normal-md">Primary</Button>,
+                <Button size="sm" key="primary-normal-sm">Primary</Button>,
             ],
             // disabled
             [
-                <Button size="lg" disabled>Disabled</Button>,
-                <Button disabled>Disabled</Button>,
-                <Button size="sm" disabled>Disabled</Button>,
+                <Button size="lg" disabled key="primary-disabled-lg">Disabled</Button>,
+                <Button disabled key="primary-disabled-md">Disabled</Button>,
+                <Button size="sm" disabled key="primary-disabled-sm">Disabled</Button>,
             ],
         ]
     }
