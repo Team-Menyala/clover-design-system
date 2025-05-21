@@ -6,8 +6,10 @@ import { LuCheck, LuChevronDown, LuChevronUp } from "react-icons/lu"
 
 import { cn } from "../../lib/utils"
 
+// TODO: add search feature for Select
 interface SelectContextType {
   search: string;
+  // eslint-disable-next-line no-unused-vars
   setSearch: (value: string) => void;
 }
 

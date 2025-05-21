@@ -39,7 +39,7 @@ export function NameForm() {
     })
 
     return <Form {...form}>
-        <form onSubmit={form.handleSubmit((data) => { })}>
+        <form onSubmit={form.handleSubmit(() => { })}>
             <FormField
                 control={form.control}
                 name="name"
@@ -74,7 +74,7 @@ export function SelectForm() {
     })
 
     return <Form {...form}>
-        <form onSubmit={form.handleSubmit((data) => { })}>
+        <form onSubmit={form.handleSubmit(() => { })}>
             <FormField
                 control={form.control}
                 name="category"
@@ -128,7 +128,7 @@ export function CheckboxForm() {
     })
 
     return <Form {...form}>
-        <form onSubmit={form.handleSubmit((data) => { })}>
+        <form onSubmit={form.handleSubmit(() => { })}>
             <FormField
                 control={form.control}
                 name="languages"
@@ -186,7 +186,7 @@ export function RadioForm() {
     })
 
     return <Form {...form}>
-        <form onSubmit={form.handleSubmit((data) => { })}>
+        <form onSubmit={form.handleSubmit(() => { })}>
             <FormField
                 control={form.control}
                 name="fruit"
