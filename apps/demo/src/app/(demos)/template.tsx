@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@team-menyala/clover/src/button";
+import { Button } from "@team-menyala/clover/src/components/button";
 import Link from "@/components/link";
 import Title from "@/components/title";
 import Loaded from "@/components/loading";
@@ -8,7 +8,8 @@ import Loaded from "@/components/loading";
 export default function Template({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <nav className="bg-white border border-gray-200 shadow-xs rounded-md p-2 pl-2 sm:pl-2 px-3 sm:px-6 fixed top-5 left-4 right-4 z-10 sm:left-20 sm:right-[unset] flex items-center gap-x-2 sm:gap-x-3">
+            <div className="fixed inset-0 bg-gradient-to-b from-background from-30% via-80% via-white/50 to-transparent h-20 z-[10]"></div>
+            <nav className="bg-white border border-gray-200 shadow-xs rounded-md p-2 pl-2 sm:pl-2 px-3 sm:px-6 fixed top-5 left-4 right-4 z-[11] sm:left-20 sm:right-[unset] flex items-center gap-x-2 sm:gap-x-3">
                 <Button variant="ghost" size="sm" className="gap-x-1 sm:gap-x-2 px-2 has-[>svg]:px-2" asChild>
                     <Link href="/">
                         <svg className="size-3" width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">

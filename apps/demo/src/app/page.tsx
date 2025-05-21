@@ -1,4 +1,4 @@
-import { Button } from "@team-menyala/clover/src/button";
+import { Button } from "@team-menyala/clover/src/components/button";
 import Footer from "../components/footer";
 import Link from "@/components/link";
 import Loaded from "@/components/loading";
@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Loaded />
-      <div className="flex items-center justify-center flex-col min-h-[100svh] p-8 gap-16 sm:p-20 sm:py-8">
+      <div className="flex items-center justify-center flex-col min-h-[100svh] p-8 gap-16 sm:p-20 pt-24 sm:pt-8 sm:py-8">
         <main className="flex flex-col gap-12 items-center text-center max-w-screen-md">
           <div className="flex flex-col gap-3 items-center">
             <svg className="-mt-8 w-12 h-12 clover-spin" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@ export default function Home() {
             <Link href="/typography"><Button variant="default">Typography</Button></Link>
             <Link href="/colors"><Button variant="default">Colors</Button></Link>
             <Link href="/buttons"><Button variant="default">Buttons</Button></Link>
-            <Button variant="default" disabled>Ideas</Button>
+            <Link href="/forms"><Button variant="default">Forms</Button></Link>
             <Button variant="default" disabled>Prototype</Button>
             <Button variant="default" disabled>Welcome</Button>
             <Button variant="default" disabled>Project</Button>

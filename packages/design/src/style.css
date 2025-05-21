@@ -90,6 +90,8 @@
 
   --font-title: 'Cal Sans', var(--font-sans);
   --font-sans: 'Outfit', -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --animate-error: errorFadeIn .2s ease-out;
 }
 
 :root {
@@ -177,4 +179,15 @@
   font-display: swap;
   font-weight: 100 900;
   src: url(./fonts/Outfit-Weight.woff2) format('woff2-variations');
+}
+
+@keyframes errorFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

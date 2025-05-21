@@ -2,7 +2,9 @@
 
 import * as React from "react"
 import * as LabelPrimitive from "@radix-ui/react-label"
+import * as SelectPrimitive from "@radix-ui/react-select"
 import { Slot } from "@radix-ui/react-slot"
+import { LuCircleAlert } from "react-icons/lu";
 import {
   Controller,
   FormProvider,
@@ -15,6 +17,14 @@ import {
 
 import { cn } from "../../lib/utils"
 import { Label } from "./label"
+import { Input } from "./input"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./select"
 
 const Form: typeof FormProvider = FormProvider
 
@@ -98,7 +108,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn("data-[error=true]:text-danger", className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -136,6 +146,61 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
+function FormInput({ ...props }: React.ComponentProps<"input">) {
+  const { error } = useFormField()
+
+  return (
+    <FormControl>
+      <div className="relative">
+        <Input
+          aria-invalid={!!error}
+          {...props}
+        />
+        {error && (
+          <LuCircleAlert
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-danger size-4"
+            size={20}
+          />
+        )}
+      </div>
+    </FormControl>
+  )
+}
+
+function FormSelect({
+  children,
+  placeholder,
+  onBlur,
+  ...props
+}: 
+  React.ComponentProps<typeof SelectPrimitive.Root>
+  & { placeholder?: string, onBlur?: () => void }
+) {
+  const { error } = useFormField()
+
+  return (
+    <Select {...props}>
+      <FormControl>
+        <div className="relative">
+          <SelectTrigger
+            onBlur={onBlur}
+            aria-invalid={!!error}
+          >
+            <SelectValue placeholder={placeholder} />
+            {error && (
+              <LuCircleAlert
+                className="absolute right-8 top-1/2 -translate-y-1/2 text-danger size-4"
+                size={20}
+              />
+            )}
+          </SelectTrigger>
+        </div>
+      </FormControl>
+      {children}
+    </Select>
+  )
+}
+
 function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message ?? "") : props.children
@@ -148,7 +213,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-danger-dark text-sm animate-error", className)}
       {...props}
     >
       {body}
@@ -162,7 +227,9 @@ export {
   FormItem,
   FormLabel,
   FormControl,
+  FormInput,
   FormDescription,
   FormMessage,
   FormField,
+  FormSelect,
 }

@@ -6,18 +6,18 @@ import dts from "rollup-plugin-dts";
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import pkg from "./package.json" with { type: "json" };
 
-export default [
-  {
-    input: "src/index.ts",
+const generateConf = (input, esm, cjs) => {
+  return {
+    input,
     output: [
       {
-        file: pkg.module,
+        file: esm,
         format: "esm",
         sourcemap: true,
         // preserveModules: true,
       },
       {
-        file: pkg.main,
+        file: cjs,
         format: "cjs",
         sourcemap: true,
         // preserveModules: true,
@@ -25,7 +25,15 @@ export default [
     ],
     external: ["react-dom"],
     plugins: [peerDepsExternal(), resolve(), commonjs(), typescript(), terser()]
-  },
+  };
+}
+
+export default [
+  generateConf("src/index.ts", pkg.module, pkg.main),
+  // ...(['bold', 'bold_duotone', 'broken', 'line_duotone', 'linear', 'outline']).map(variant => generateConf(`src/icons/${variant}/index.ts`,
+  //   `dist/icons/${variant}/index.esm.js`,
+  //   `dist/icons/${variant}/index.js`
+  // )),
   {
     // Types
     input: "src/index.ts",
