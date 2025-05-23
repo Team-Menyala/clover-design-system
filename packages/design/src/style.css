@@ -140,7 +140,7 @@
     @apply bg-background text-gray-darker font-sans font-light;
   }
   h1,h2,h3,h4,h5,h6 {
-    @apply text-foreground font-title;
+    @apply font-title;
   }
 
   h1 { @apply text-5xl; }
